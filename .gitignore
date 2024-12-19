@@ -3,6 +3,7 @@
 
 # Ignore Java class files
 *.class
+*.html
 
 # Ignore temporary files
 target/
