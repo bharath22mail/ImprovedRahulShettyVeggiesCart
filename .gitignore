@@ -1,0 +1,21 @@
+# Ignore log files
+*.log
+
+# Ignore Java class files
+*.class
+
+# Ignore temporary files
+target/
+test-output/
+
+# Ignore IDE configuration files
+.idea/
+.vscode/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Added later
+.classpath
+settings/
