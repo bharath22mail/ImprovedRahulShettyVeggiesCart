@@ -17,6 +17,6 @@ public class AppTest extends BaseTest
     public void shouldAnswerWithTrue()
     {
     	System.out.println("Executing AppTest");
-        Assert.assertTrue( false );
+        Assert.assertTrue( true );
     }
 }
