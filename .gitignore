@@ -21,3 +21,6 @@ Thumbs.db
 # Added later
 .classpath
 settings/
+reports/
+.settings/org.eclipse.jdt.core.prefs
+*.prefs
