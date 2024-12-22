@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import com.rahulshettyacademy.shopping.pageobjects.CartPage;
 import com.rahulshettyacademy.shopping.pageobjects.CheckoutPage;
 import com.rahulshettyacademy.shopping.pageobjects.ConfirmationPage;
+import com.rahulshettyacademy.shopping.pageobjects.LandingPage;
 import com.rahulshettyacademy.shopping.pageobjects.MenuPage;
 import com.rahulshettyacademy.shopping.pageobjects.OrderPage;
 import com.rahulshettyacademy.shopping.pageobjects.ProductCatalog;
@@ -22,6 +23,9 @@ public class SubmitOrderTest extends BaseTest {
 
 	@Test(dataProvider = "getData", groups = { "Purchase" })
 	public void submitOrderTest(HashMap<String, String> input) throws InterruptedException {
+		
+		landingPage = new LandingPage(driver);
+		landingPage.gotoUrl();
 
 		ProductCatalog productCatalog = landingPage.loginApplication(input.get("email"),input.get("password"));
 
@@ -44,8 +48,12 @@ public class SubmitOrderTest extends BaseTest {
 
 	}
 
-	@Test(dependsOnMethods = { "submitOrderTest" })
+	@Test(dependsOnMethods = { "submitOrderTest" }, groups={"History"})
 	public void orderHistoryTest() {
+		
+		landingPage = new LandingPage(driver);
+		landingPage.gotoUrl();
+		
 		landingPage.loginApplication("kushal@udemy.com", "Welcome@123");
 		MenuPage menuPage = new MenuPage(driver);
 		OrderPage orderPage = menuPage.clickOrdersIcon();

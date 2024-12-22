@@ -12,26 +12,22 @@ import com.rahulshettyacademy.shopping.resources.ExtentReporterNG;
 
 public class Listeners extends BaseTest implements ITestListener{
 
-	ExtentTest test;
-	ExtentReports extent=ExtentReporterNG.getReportObject();
-	ThreadLocal<ExtentTest> extentTest= new ThreadLocal<>();
 	
 	@Override
 	public void onTestStart(ITestResult result) {
-		test=extent.createTest(result.getMethod().getMethodName());
-		extentTest.set(test);
-		
+		ExtentReporterNG.createTestCaseReport(result.getMethod().getMethodName());
+		ExtentReporterNG.getTestCase().log(Status.INFO, "Test case :"+result.getMethod().getMethodName()+" execution started");
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		extentTest.get().log(Status.PASS, "Test is Passed:");
+		ExtentReporterNG.getTestCase().log(Status.PASS, "Test is Passed:");
 	}
 
 	@Override
 	public void onTestFailure(ITestResult result) {
 		
-		extentTest.get().fail(result.getThrowable());
+		ExtentReporterNG.getTestCase().fail(result.getThrowable());
 		try {
 			driver= (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
 		} catch (Exception e) {
@@ -39,7 +35,7 @@ public class Listeners extends BaseTest implements ITestListener{
 			e.printStackTrace();
 		}
 		String filePath=getScreeshot(result.getMethod().getMethodName(),driver);
-		extentTest.get().addScreenCaptureFromPath(filePath, result.getMethod().getMethodName());
+		ExtentReporterNG.getTestCase().addScreenCaptureFromPath(filePath, result.getMethod().getMethodName());
 		//extent.flush();
 	}
 
@@ -60,12 +56,12 @@ public class Listeners extends BaseTest implements ITestListener{
 
 	@Override
 	public void onStart(ITestContext context) {
-		// TODO Auto-generated method stub
+		ExtentReporterNG.intiReport();
 	}
 
 	@Override
 	public void onFinish(ITestContext context) {
-		extent.flush();
+		ExtentReporterNG.finishReport();
 	}
 
 }

@@ -94,11 +94,10 @@ public class BaseTest {
 	}
 
 	@BeforeMethod(alwaysRun = true)
-	public LandingPage launchApplication() {
+	public void launchApplication() {
 		driver = initializeDriver();
-		landingPage = new LandingPage(driver);
-		landingPage.gotoUrl();
-		return landingPage;
+
+		//return landingPage;
 	}
 
 	@AfterMethod(alwaysRun = true)

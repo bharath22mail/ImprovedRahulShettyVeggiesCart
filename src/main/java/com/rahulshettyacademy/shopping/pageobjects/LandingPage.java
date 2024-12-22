@@ -36,9 +36,12 @@ public class LandingPage extends AbstractComponents {
 	WebElement errorMessage;
 
 	public ProductCatalog loginApplication(String name, String password) {
-		userEmail.sendKeys(name);
-		userPassword.sendKeys(password);
-		submit.click();
+		enterTextBoxData(userEmail, name);
+		enterTextBoxData(userPassword, password);
+		clickElement(submit);
+		//userEmail.sendKeys(name);
+		//userPassword.sendKeys(password);
+		//submit.click();
 		ProductCatalog productCatalog = new ProductCatalog(driver);
 		return productCatalog;
 	}

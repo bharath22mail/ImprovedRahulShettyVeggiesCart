@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite" parallel="tests">
+
 	<groups>
 		<run>
 			<include name="Purchase" />
+			<include name="History" />
 		</run>
 	</groups>
 
-	<test thread-count="5" name="Submit Order Test">
+	<listeners>
+		<listener class-name="com.rahulshettyacademy.shopping.testcomponents.Listeners" />
+		<!-- 
+		<listener class-name="com.rahulshettyacademy.shopping.testcomponents.Retry" /> 
+		<listener class-name="com.rahulshettyacademy.shopping.testcomponents.MethodInterceptor" />
+		-->		
+	</listeners>
+	 
+	<test thread-count="5" name="Error Validation Test">
 		<classes>
 			<class
 				name="com.rahulshettyacademy.shopping.tests.ErrorValidationsTest" />
 		</classes>
 	</test>
-	<test thread-count="5" name="Error Validation Test">
+	<test thread-count="5" name="Submit Order Test and Histoty Test">
 		<classes>
 			<class
 				name="com.rahulshettyacademy.shopping.tests.SubmitOrderTest" />
