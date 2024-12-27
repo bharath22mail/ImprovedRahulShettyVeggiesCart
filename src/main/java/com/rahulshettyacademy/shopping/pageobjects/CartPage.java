@@ -2,6 +2,7 @@ package com.rahulshettyacademy.shopping.pageobjects;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,6 +26,8 @@ public class CartPage extends AbstractComponents {
 	@FindBy(css = ".totalRow button")
 	WebElement checkOut;
 
+	By checkoutButton = By.cssSelector(".totalRow button");
+	
 	public boolean verifyProductDisplay(String productName) {
 
 		boolean flag = productTitles.stream().anyMatch(cartItem -> cartItem.getText().equalsIgnoreCase(productName));
@@ -33,7 +36,10 @@ public class CartPage extends AbstractComponents {
 
 	}
 	public CheckoutPage goToCheckOut() {
-		checkOut.click();
+		
+		waitForElementToAppear(checkoutButton);
+		//checkOut.click();
+		clickElement(checkOut);
 		CheckoutPage checkoutPage = new CheckoutPage(driver);
 		return checkoutPage;
 	}

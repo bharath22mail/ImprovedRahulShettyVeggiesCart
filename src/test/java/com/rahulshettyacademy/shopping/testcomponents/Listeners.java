@@ -1,18 +1,25 @@
 package com.rahulshettyacademy.shopping.testcomponents;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.testng.ISuite;
+import org.testng.ISuiteListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import com.rahulshettyacademy.shopping.resources.ExtentReporterNG;
 
-public class Listeners extends BaseTest implements ITestListener{
+public class Listeners extends BaseTest implements ITestListener,ISuiteListener{
 
-	
+
 	@Override
 	public void onTestStart(ITestResult result) {
 		ExtentReporterNG.createTestCaseReport(result.getMethod().getMethodName());
@@ -27,15 +34,18 @@ public class Listeners extends BaseTest implements ITestListener{
 	@Override
 	public void onTestFailure(ITestResult result) {
 		
-		ExtentReporterNG.getTestCase().fail(result.getThrowable());
-		try {
-			driver= (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String filePath=getScreeshot(result.getMethod().getMethodName(),driver);
-		ExtentReporterNG.getTestCase().addScreenCaptureFromPath(filePath, result.getMethod().getMethodName());
+		ExtentReporterNG.getTestCase().pass("Data entered in TextBox:\t"+result.getTestName()+"\t"+ExtentReporterNG.getTestCase().fail(result.getThrowable()), MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReporterNG.getScreeshot(driver)).build());
+
+		
+//		ExtentReporterNG.getTestCase().fail(result.getThrowable());
+//		try {
+//			driver= (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		//String filePath=getScreeshot(result.getMethod().getMethodName(),driver);
+		//ExtentReporterNG.getTestCase().addScreenCaptureFromPath(filePath, result.getMethod().getMethodName());
 		//extent.flush();
 	}
 
@@ -55,13 +65,25 @@ public class Listeners extends BaseTest implements ITestListener{
 	}
 
 	@Override
-	public void onStart(ITestContext context) {
-		ExtentReporterNG.intiReport();
+	public void onStart(ITestContext  context) {
+		
+		//ExtentReporterNG.intiReport();
+		//System.out.println("ExtentReporterNG.intiReport()::"+context.getName());
 	}
-
+	@Override
+	public void onStart(ISuite suite) {
+		
+		ExtentReporterNG.intiReport();
+		System.out.println("Suite Start::"+suite.getName());
+	}
 	@Override
 	public void onFinish(ITestContext context) {
 		ExtentReporterNG.finishReport();
 	}
-
+	@Override
+	public void onFinish(ISuite suite) {
+		
+		ExtentReporterNG.finishReport();
+		System.out.println("Suite finish::"+suite.getName());
+	}
 }

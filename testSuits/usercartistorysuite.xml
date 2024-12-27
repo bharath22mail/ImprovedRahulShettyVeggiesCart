@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite" parallel="tests">
+<suite name="usercarthistorysuite" parallel="false">
 
 	<groups>
 		<run>
@@ -17,13 +17,13 @@
 		-->		
 	</listeners>
 	 
-	<test thread-count="5" name="Error Validation Test">
+	<test name="Error Validation Test">
 		<classes>
 			<class
 				name="com.rahulshettyacademy.shopping.tests.ErrorValidationsTest" />
 		</classes>
 	</test>
-	<test thread-count="5" name="Submit Order Test and Histoty Test">
+	<test name="Submit Order Test and Histoty Test">
 		<classes>
 			<class
 				name="com.rahulshettyacademy.shopping.tests.SubmitOrderTest" />

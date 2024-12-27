@@ -33,12 +33,14 @@ public class CheckoutPage extends AbstractComponents {
 	public void selectCountry(String countryName) {
 		Actions actions = new Actions(driver);
 
-		actions.sendKeys(country, countryName).build().perform();
+		//actions.sendKeys(country, countryName).build().perform();
+		enterTextBoxData(country, countryName);
 		waitForElementToAppear(results); 
 		selectCountry.click();
 	}
 	public ConfirmationPage submitOrder() {
-		submit.click();
+		//submit.click();
+		clickElement(submit);
 		ConfirmationPage confirmationPage = new ConfirmationPage(driver);
 		return confirmationPage;
 	}

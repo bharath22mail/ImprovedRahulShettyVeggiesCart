@@ -55,8 +55,21 @@
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>7.10.1</version>
-			<scope>test</scope>
+			<version>7.10.2</version>
+			<!--<scope>test</scope> -->
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>5.4.0</version>
+			<!--<scope>test</scope>-->
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20240303</version>
 		</dependency>
 
 	</dependencies>
@@ -73,7 +86,7 @@
 							<version>3.2.5</version>
 							<configuration>
 								<suiteXmlFiles>
-									<suiteXmlFile>testSuits/testng.xml</suiteXmlFile>
+									<suiteXmlFile>testSuits/testngsuite.xml</suiteXmlFile>
 								</suiteXmlFiles>
 							</configuration>
 						</plugin>
@@ -92,7 +105,7 @@
 							<version>3.2.5</version>
 							<configuration>
 								<suiteXmlFiles>
-									<suiteXmlFile>testSuits/purchasetestng.xml</suiteXmlFile>
+									<suiteXmlFile>testSuits/submitordersuite.xml</suiteXmlFile>
 								</suiteXmlFiles>
 							</configuration>
 						</plugin>
@@ -111,7 +124,8 @@
 							<version>3.2.5</version>
 							<configuration>
 								<suiteXmlFiles>
-									<suiteXmlFile>testSuits/groupstestng.xml</suiteXmlFile>
+									<suiteXmlFile>
+										testSuits/groupstestngsuite.xml</suiteXmlFile>
 								</suiteXmlFiles>
 							</configuration>
 						</plugin>
@@ -130,7 +144,8 @@
 							<version>3.2.5</version>
 							<configuration>
 								<suiteXmlFiles>
-									<suiteXmlFile>testSuits/AnnotationTransformerListenersTest.xml</suiteXmlFile>
+									<suiteXmlFile>
+										testSuits/annotationtransformerlistenerssuite.xml</suiteXmlFile>
 								</suiteXmlFiles>
 							</configuration>
 						</plugin>

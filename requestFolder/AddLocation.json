@@ -1,0 +1,20 @@
+{
+"URL":"https://rahulshettyacademy.com/maps/api/place/add/json?key=qaclick123",
+"requestType":"POST",
+"Body":{
+  "location": {
+    "lat": "##lat##",
+    "lng": "##lng##"
+  },
+  "accuracy": 50,
+  "name": "Frontline house",
+  "phone_number": "(+91) 983 893 3937",
+  "address": "29, side layout, cohen 09",
+  "types": [
+    "shoe park",
+    "shop"
+  ],
+  "website": "##weburl##",
+  "language": "##language##"
+}
+}

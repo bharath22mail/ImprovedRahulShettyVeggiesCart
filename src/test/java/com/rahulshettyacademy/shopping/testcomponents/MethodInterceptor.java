@@ -7,7 +7,7 @@ import org.testng.IMethodInstance;
 import org.testng.IMethodInterceptor;
 import org.testng.ITestContext;
 
-public class MethodInterceptor extends Retry implements IMethodInterceptor {
+public class MethodInterceptor implements IMethodInterceptor {
  List<IMethodInstance> result = new ArrayList<>();
  //Retry retry=new Retry();
 	@Override

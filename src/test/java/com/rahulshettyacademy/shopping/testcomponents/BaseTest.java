@@ -24,46 +24,45 @@ import org.testng.annotations.BeforeMethod;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rahulshettyacademy.shopping.AbstractComponents.Generic;
 import com.rahulshettyacademy.shopping.pageobjects.LandingPage;
 
-public class BaseTest {
+public class BaseTest extends Generic{
 
 	public WebDriver driver;
 	public LandingPage landingPage;
+	public ChromeOptions options = new ChromeOptions();
 
 	public WebDriver initializeDriver() {
 		try {
-			String projectPath = System.getProperty("user.dir");
-			Properties props = new Properties();
-
-			props.load(new FileInputStream(projectPath
-					+ "//src//main//java//com//rahulshettyacademy//shopping//resources//Global.properties"));
-
+			
 			//String browserName = props.getProperty("browser");
-			String browserName = (System.getProperty("browser"))!=null ? System.getProperty("browser") : props.getProperty("browser");
+			String browserName = (System.getProperty("browser"))!=null ? System.getProperty("browser") : getProperty("browser");
 			
 			if (browserName.equalsIgnoreCase("chrome")) {
-				//ChromeOptions options = new ChromeOptions();
-				//options.addArguments("headless");
-				//driver = new ChromeDriver(options);
-				driver = new ChromeDriver();
+				
+				String headLessMode= (System.getProperty("headLessMode"))!=null ? System.getProperty("headLessMode") : getProperty("headLessMode");
+				
+				if(headLessMode.equalsIgnoreCase("on")){
+					options.addArguments("headless");
+					driver= new ChromeDriver(options);
+				}
+				else{
+					driver = new ChromeDriver();
+				}
 
 			} else if (browserName.equalsIgnoreCase("firefox")) {
 				driver = new FirefoxDriver();
 
 			}
-			driver.manage().window().setSize(new Dimension(1440, 900));
-			//driver.manage().window().maximize();
+			//driver.manage().window().setSize(new Dimension(1440, 900));
+			driver.manage().window().maximize();
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
-			// return driver;
-
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Exception in Base class::"+e.getMessage());
+			//e.printStackTrace();
 		}
 		return driver;
 	}
@@ -93,29 +92,15 @@ public class BaseTest {
 
 	}
 
-	@BeforeMethod(alwaysRun = true)
+	@BeforeMethod   (alwaysRun = true)
 	public void launchApplication() {
 		driver = initializeDriver();
 
-		//return landingPage;
 	}
 
-	@AfterMethod(alwaysRun = true)
+	@AfterMethod  (alwaysRun = true)
 	public void tearDown() {
 		driver.quit();
 	}
-	public String getScreeshot(String testCaseName,WebDriver driver) {
-		TakesScreenshot ts = (TakesScreenshot)driver;
-		File source = ts.getScreenshotAs(OutputType.FILE);
-		File dest = new File(System.getProperty("user.dir")+"//reports//"+testCaseName+".png");
-		try {
-			FileUtils.copyFile(source, dest);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return System.getProperty("user.dir")+"//reports//"+testCaseName+".png";
-		
-	}
-
+	
 }

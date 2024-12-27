@@ -21,7 +21,7 @@ public class SubmitOrderTest extends BaseTest {
 	String productName = "ZARA COAT 3";
 
 
-	@Test(dataProvider = "getData", groups = { "Purchase" })
+	@Test(dataProvider = "UserCartConfirmationTest", groups = { "Purchase" })
 	public void submitOrderTest(HashMap<String, String> input) throws InterruptedException {
 		
 		landingPage = new LandingPage(driver);
@@ -48,7 +48,7 @@ public class SubmitOrderTest extends BaseTest {
 
 	}
 
-	@Test(dependsOnMethods = { "submitOrderTest" }, groups={"History"})
+	@Test(dependsOnMethods = { "submitOrderTest" }, groups={"History"} )
 	public void orderHistoryTest() {
 		
 		landingPage = new LandingPage(driver);
@@ -81,7 +81,7 @@ public class SubmitOrderTest extends BaseTest {
 	 * }
 	 */
 	
-	@DataProvider
+	@DataProvider(name="UserCartConfirmationTest")//,parallel = true)
 	public Object[][] getData(){
 		
 		List<HashMap<String, String>> data = getJsonDataMap(System.getProperty("user.dir")

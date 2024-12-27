@@ -1,0 +1,16 @@
+{
+  "location": {
+    "lat": "98.9",
+    "lng": "-101.23"
+  },
+  "accuracy": 50,
+  "name": "Frontline house",
+  "phone_number": "(+91) 983 893 3937",
+  "address": "29, side layout, cohen 09",
+  "types": [
+    "shoe park",
+    "shop"
+  ],
+  "website": "##weburl##",
+  "language": "##language##"
+}

@@ -21,6 +21,7 @@ public class ConfirmationPage extends AbstractComponents {
 		PageFactory.initElements(driver, this);
 	}
 	public String getConfirmationMessage() {
-		return confirmationMessage.getText();
+		//return confirmationMessage.getText();
+		return getText(confirmationMessage);
 	}
 }

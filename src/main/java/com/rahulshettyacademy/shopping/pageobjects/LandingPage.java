@@ -45,9 +45,7 @@ public class LandingPage extends AbstractComponents {
 		ProductCatalog productCatalog = new ProductCatalog(driver);
 		return productCatalog;
 	}
-	public void gotoUrl() {
-		driver.get("https://rahulshettyacademy.com/client");
-	}
+	
 	public String getErrorMessage() {
 		waitForWebElementToAppear(errorMessage);
 		return errorMessage.getText();

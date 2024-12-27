@@ -48,6 +48,6 @@ public class ProductCatalog extends AbstractComponents {
 		WebElement prod = getProductByName(productName);
 		prod.findElement(addToCart).click();
 		waitForElementToAppear(toastMessage);
-		waitForElementToDisapper(spinner);
+		//waitForElementToDisapper(spinner);
 	}
 }
