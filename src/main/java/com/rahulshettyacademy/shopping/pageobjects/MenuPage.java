@@ -34,12 +34,12 @@ public class MenuPage extends AbstractComponents {
 			e.printStackTrace();
 		}
 		waitForElementToAppear(cartButton);	
-		cartIcon.click();
+		clickElement(cartIcon);
 		CartPage cartPage = new CartPage(driver);
 		return cartPage;
 	}
 	public OrderPage clickOrdersIcon() {
-		orderIcon.click();
+		clickElement(orderIcon);
 		OrderPage orderPage = new OrderPage(driver);
 		return orderPage;
 	}

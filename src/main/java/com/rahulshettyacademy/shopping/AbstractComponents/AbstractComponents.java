@@ -57,4 +57,8 @@ public class AbstractComponents extends Generic{
 		ExtentReporterNG.getTestCase().pass("Text of the Webment:\t"+element.getText(), MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReporterNG.getScreeshot(driver)).build());
 		return element.getText();
 	}
+	public String verifyText(WebElement element) {
+		ExtentReporterNG.getTestCase().pass("Expected Text of the Webment is matched with actual text:\t"+element.getText(), MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReporterNG.getScreeshot(driver)).build());
+		return element.getText();
+	}
 }

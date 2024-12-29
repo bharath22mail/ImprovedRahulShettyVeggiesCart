@@ -18,7 +18,7 @@ import com.rahulshettyacademy.shopping.testcomponents.BaseTest;
 import com.rahulshettyacademy.shopping.testcomponents.Retry;
 
 public class SubmitOrderTest extends BaseTest {
-	String productName = "ZARA COAT 3";
+	String productName = "ADIDAS ORIGINAL";
 
 
 	@Test(dataProvider = "UserCartConfirmationTest", groups = { "Purchase" })

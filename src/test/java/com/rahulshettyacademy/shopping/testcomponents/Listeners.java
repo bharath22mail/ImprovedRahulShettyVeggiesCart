@@ -33,10 +33,16 @@ public class Listeners extends BaseTest implements ITestListener,ISuiteListener{
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		
-		ExtentReporterNG.getTestCase().pass("Data entered in TextBox:\t"+result.getTestName()+"\t"+ExtentReporterNG.getTestCase().fail(result.getThrowable()), MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReporterNG.getScreeshot(driver)).build());
+		try {
+		driver= (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
+		ExtentReporterNG.getTestCase().fail("Step failed:\t"+result.getTestName()+"\t"+ExtentReporterNG.getTestCase().fail(result.getThrowable()), MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReporterNG.getScreeshot(driver)).build());
 
-		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 //		ExtentReporterNG.getTestCase().fail(result.getThrowable());
 //		try {
 //			driver= (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
@@ -52,6 +58,7 @@ public class Listeners extends BaseTest implements ITestListener,ISuiteListener{
 	@Override
 	public void onTestSkipped(ITestResult result) {
 		// TODO Auto-generated method stub
+		ExtentReporterNG.getTestCase().skip("Step skipped:\t"+result.getTestName()+"\t"+ExtentReporterNG.getTestCase().skip(result.getThrowable()));//, MediaEntityBuilder.createScreenCaptureFromBase64String(ExtentReporterNG.getScreeshot(driver)).build());
 	}
 
 	@Override
@@ -78,7 +85,7 @@ public class Listeners extends BaseTest implements ITestListener,ISuiteListener{
 	}
 	@Override
 	public void onFinish(ITestContext context) {
-		ExtentReporterNG.finishReport();
+		//ExtentReporterNG.finishReport();
 	}
 	@Override
 	public void onFinish(ISuite suite) {
